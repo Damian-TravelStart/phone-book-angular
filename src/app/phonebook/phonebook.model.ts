@@ -1,4 +1,4 @@
 export class PhoneBook {
-    public id: number;
+    public id: string;
     public name: string;
 }

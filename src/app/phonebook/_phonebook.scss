@@ -8,6 +8,15 @@
     text-align: center;
 }
 
+table {
+    width: 100%;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+
 .phone-book__search {
 
 }
@@ -20,10 +29,12 @@
 
 }
 
+.phone-book__form-group {
+    display: inline-block;
+}
+
 .phone-book__add-entry {
     position: fixed;
-
-    border-radius: 999px;
     &--green {
         color: #30cb00;
     }  

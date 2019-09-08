@@ -14,21 +14,6 @@ export class PhoneBookService {
 
     }
 
-    public createPhoneBook(phoneBookName: string): Promise<PhoneBook> {
-        return new Promise<any>((resolve, reject) => {
-            this.httpClient
-                .post(`${PHONEBOOK_API_URL}phonebook`, { name: phoneBookName})
-                .subscribe(
-                    (response: any) => {
-                        resolve(response);
-                    },
-                    (error: any) => {
-                        reject(error);
-                    }
-                );
-        });
-    }
-
     public addPhoneBookEntry(entry: Entry, phoneBookId: string): void {
         const entryData = {
             entryId: entry.id,
@@ -41,10 +26,10 @@ export class PhoneBookService {
             .post(`${PHONEBOOK_API_URL}phonebook`, entryData);
     }
 
-    public getAllPhoneBooks(): Promise<PhoneBook> {
+    public getAllPhoneBookEntries(phoneBookId: string): Promise<Entry[]> {
         return new Promise<any>((resolve, reject) => {
             this.httpClient
-                .get(`${PHONEBOOK_API_URL}phonebook`)
+                .get(`${PHONEBOOK_API_URL}${phoneBookId}/entries`)
                 .subscribe(
                     (response: any) => {
                         resolve(response);

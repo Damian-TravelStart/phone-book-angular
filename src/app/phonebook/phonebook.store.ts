@@ -1,37 +1,36 @@
 import { Injectable } from "@angular/core";
 import { PhoneBook } from './phonebook.model';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { Entry } from './entry.model';
+import { BehaviorSubject, Subject, Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Injectable()
 export class PhoneBookStore {
-    private phoneBookSubject: BehaviorSubject<PhoneBook>;
-    private phoneBook: PhoneBook;
+    private phoneBookSubject: BehaviorSubject<Entry[]>;
+    private phoneBookEntries: Entry[];
 
     public constructor(){
-        this.phoneBookSubject = new BehaviorSubject<PhoneBook>(this.phoneBook);
+        this.phoneBookSubject = new BehaviorSubject<Entry[]>([] as Entry[]);
     }
 
-    public setPhoneBookResults(phoneBook: PhoneBook): void {
-        this.phoneBook = phoneBook;
+    public setPhoneBookResults(phoneBookEntries: Entry[]): void {
+        this.phoneBookEntries = phoneBookEntries;
         this.emitChanges();
     }
 
     public clearPhoneBookResults(): void {
-        this.phoneBook = undefined;
+        this.phoneBookEntries = undefined;
         this.emitChanges();
     }
 
     public subscribe(
-        unsubscribeSubject: Subject<void>,
-        onChangeCallBack: (phoneBook: PhoneBook) => void
+        onChangeCallBack: (phoneBookEntries: Entry[]) => void
     ): void {
         this.phoneBookSubject
-            .pipe(takeUntil(unsubscribeSubject))
             .subscribe(onChangeCallBack);
     }
 
     private emitChanges(): void {
-        this.phoneBookSubject.next(this.phoneBook);
+        this.phoneBookSubject.next(this.phoneBookEntries);
     }
 }
