@@ -1,0 +1,22 @@
+<div class="phone-book__container">
+    <header class="phone-book__header">
+        <h1>Phone Book</h1>
+    </header>
+    <div class="phone-book__search">
+        <input 
+            class="phone-book__search-box"
+            type="text"
+            name="search"
+            placeholder="Search" 
+            [(ngModel)]="entrySearchText"
+            (ngModelChange)="findEntry()" />
+    </div>
+    <div class="phone-book__entries-view">
+
+    </div>
+    <footer class="phone-book__footer">
+        <button class="phone-book__add-entry">
+
+        </button>
+    </footer>
+</div>

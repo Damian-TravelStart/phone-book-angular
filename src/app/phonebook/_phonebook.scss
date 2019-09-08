@@ -1,0 +1,30 @@
+.phone-book__container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.phone-book__header {
+    text-align: center;
+}
+
+.phone-book__search {
+
+}
+
+.phone-book__entries-view {
+
+}
+
+.phone-book__footer {
+
+}
+
+.phone-book__add-entry {
+    position: fixed;
+
+    border-radius: 999px;
+    &--green {
+        color: #30cb00;
+    }  
+}
