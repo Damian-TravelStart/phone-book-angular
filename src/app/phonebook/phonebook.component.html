@@ -1,0 +1,53 @@
+<div class="phone-book__container">
+    <header class="phone-book__header">
+        <h1>Phone Book</h1>
+    </header>
+    <div class="phone-book__entries-view">
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search" [ngModel]="searchEntryText">
+        </mat-form-field>
+            
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+            
+            <!-- PhoneNumber Column -->
+            <ng-container matColumnDef="phone number">
+                <th mat-header-cell *matHeaderCellDef> Phone Number </th>
+                <td mat-cell *matCellDef="let element"> {{element.phoneNumber}} </td>
+            </ng-container>
+            
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+    <form 
+        class="phone-book__Add-new-entry"
+        *ngIf="isInEditMode">
+        <div class="phone-book__form-group">
+            <label for="name">Name</label> <br /> 
+            <input type="text" name="name" [ngModel]="entryName" />
+        </div>
+        <div class="phone-book__form-group">
+            <label for="phoneNumber">Phone Number</label> <br /> 
+            <input type="text" name="phoneNumber" [ngModel]="entryPhoneNumber" /> 
+        </div>
+        <button mat-icon-button
+            aria-label="Done adding Entry"
+            (click)="submitEntry()">
+            <mat-icon aria-hidden="false" aria-label="Submit entry">done</mat-icon>
+        </button>
+    </form>
+    <footer class="phone-book__footer"
+        *ngIf="!isInEditMode">
+        <button mat-icon-button
+            aria-label="Add Entry"
+            (click)="addEntry()">
+            <mat-icon aria-hidden="false" aria-label="Add Entry Icon">add icon</mat-icon>
+        </button>
+    </footer>
+</div>

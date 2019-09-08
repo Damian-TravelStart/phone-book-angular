@@ -1,0 +1,41 @@
+.phone-book__container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.phone-book__header {
+    text-align: center;
+}
+
+table {
+    width: 100%;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+
+.phone-book__search {
+
+}
+
+.phone-book__entries-view {
+
+}
+
+.phone-book__footer {
+
+}
+
+.phone-book__form-group {
+    display: inline-block;
+}
+
+.phone-book__add-entry {
+    position: fixed;
+    &--green {
+        color: #30cb00;
+    }  
+}
