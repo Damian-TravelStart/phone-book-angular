@@ -7,10 +7,12 @@ import { takeUntil } from 'rxjs/operators';
 @Injectable()
 export class PhoneBookStore {
     private phoneBookSubject: BehaviorSubject<Entry[]>;
+    private phoneBookObservable: Observable<Entry[]>;
     private phoneBookEntries: Entry[];
 
     public constructor(){
         this.phoneBookSubject = new BehaviorSubject<Entry[]>([] as Entry[]);
+        this.phoneBookObservable = this.phoneBookSubject.asObservable();
     }
 
     public setPhoneBookResults(phoneBookEntries: Entry[]): void {
@@ -26,7 +28,7 @@ export class PhoneBookStore {
     public subscribe(
         onChangeCallBack: (phoneBookEntries: Entry[]) => void
     ): void {
-        this.phoneBookSubject
+        this.phoneBookObservable
             .subscribe(onChangeCallBack);
     }
 
